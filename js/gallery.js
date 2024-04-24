@@ -77,6 +77,10 @@ images.forEach(function callback(items) {
   const a = document.createElement("a");
   a.classList.add("gallery-link");
   a.href = items.original;
+  a.addEventListener("click", function handleOff(event) {
+    event.preventDefault();
+  });
+  
   
   const img = document.createElement("img");
   img.classList.add("gallery-image");
@@ -94,29 +98,25 @@ images.forEach(function callback(items) {
 
 galleryEl.appendChild(fragment);
 
+const largeEl = document.querySelector("ul.gallery");
+largeEl.addEventListener("click", selectImage);
+function selectImage(event) {
+ const openBigImg = event.target.dataset.source;
+   if (!openBigImg) {
+    return;
+  }
+console.log(openBigImg);
 
-//a.setAttribute("href", "img.dataset.source");
-const aEl = document.querySelector("href");
-consoale.log(aEl)
-aEl.forEach(function callback(element) {
-  
-  element.target.textContent;
-  
-})
+const instance = basicLightbox.create(`
+ 
+<div class="modal">
+    <img
+      src="${openBigImg}"
+    />
+  </div>
+`) 
+instance.show();
 
-aEl.addEventListener("click", handleOff);
-function handleOff(event) {
-  event.preventDefault();
-};
-
-const bigEl = document.querySelector("ul.gallery");
-  bigEl.addEventListener("click", selectImage);
-  function selectImage(event) {
-  event.target;
-  console.log(event.target.images.original);
 }
-  
-
-
 
 
